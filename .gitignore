@@ -1,0 +1,37 @@
+# Local environments, Python artifacts and editor state.
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+build/
+dist/
+.idea/
+.vscode/
+.DS_Store
+
+# Data, features, weights and experimental outputs stay outside the source release.
+data/
+datasets/
+features/
+checkpoints/
+outputs/
+logs/
+wandb/
+*.pt
+*.pth
+*.pkl
+*.pickle
+*.npy
+*.npz
+*.bin
+*.safetensors
+*.mp4
+*.wav
+*.log
+*.tmp
+.env
+.env.*
+*.pem
+*.key
