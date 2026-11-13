@@ -1,0 +1,28 @@
+cff-version: 1.2.0
+message: "Please cite the original Realtime-MERC paper when using the method."
+type: software
+title: "Realtime-MERC: clean feature-based implementation"
+version: 0.1.0
+license: BSD-3-Clause
+authors:
+  - family-names: Zhao
+    given-names: Xiaolin
+  - family-names: Chen
+    given-names: Junyi
+  - family-names: Zheng
+    given-names: Zhedong
+  - family-names: Liu
+    given-names: Qian
+references:
+  - type: conference-paper
+    title: "Real-Time Multimodal Emotion Recognition in Conversations with MLLMs"
+    doi: "10.1007/978-981-92-2480-7_22"
+    authors:
+      - family-names: Zhao
+        given-names: Xiaolin
+      - family-names: Chen
+        given-names: Junyi
+      - family-names: Zheng
+        given-names: Zhedong
+      - family-names: Liu
+        given-names: Qian
