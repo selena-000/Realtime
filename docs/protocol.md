@@ -1,21 +1,24 @@
 # Protocol and verification
 
-The architecture is copied from the original `final` branch. Reorganizing it
-does not establish the validity of the paper's reported scores.
+The architecture and label-supplied trajectory construction come from the
+inspected `final` source snapshot. The predicted-trajectory option was added
+during this cleanup. The settings below describe code behavior; they do not
+establish the experimental settings used for the paper's reported results.
 
 | Mode | Trajectory source | Model input history | Intended use |
 | --- | --- | --- | --- |
 | realtime | predicted | Preceding model predictions | Default training and deployment |
 | realtime | none | Empty trajectory; optional CEM state | Ablation |
-| realtime | oracle | Preceding ground-truth labels | Explicit original experiment |
-| offline | oracle | All true labels, including current target | Explicit original experiment |
+| realtime | oracle | Preceding ground-truth labels | Match inspected label-based input construction |
+| offline | oracle | All true labels, including current target | Match inspected label-based input construction |
 
-The `offline/oracle` experiment exposes the current target through its input.
-Its F1 should not be interpreted as ordinary held-out classification accuracy.
-The `realtime/oracle` experiment assumes past true labels are supplied externally.
-Neither setting is equivalent to deployment without annotations. The original
-checkpoints were trained under those original protocols; causal evaluation of
-an old checkpoint is a different experiment.
+Here, `oracle` names trajectories supplied from dataset annotations. In
+`realtime` mode those annotations cover preceding utterances; in `offline`
+mode they cover the whole dialogue, including the current target. `predicted`
+uses preceding model predictions instead. These are different input settings,
+so comparisons should explicitly state and match the trajectory source and
+context mode. Inspecting the loader alone does not establish how an existing
+checkpoint was trained or how a reported paper score was obtained.
 
 During predicted-trajectory training, argmax predictions build the trajectory
 without gradients. The recurrent memory is detached at every utterance, as in

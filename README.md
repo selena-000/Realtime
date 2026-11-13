@@ -111,22 +111,28 @@ API for checkpoint compatibility. A model configured with text embeddings
 requires explicit `text_embeddings` on each call. The CLI uses feature-only
 heads; the large upstream text encoder is not bundled.
 
-## Original experiment compatibility
+## Trajectory settings and source compatibility
 
-The original `final` implementation constructs trajectories from **ground-truth
-CSV labels**. Its `realtime` setting uses past true labels; its `offline`
-setting includes the entire dialogue, including the current target. These
-are oracle-conditioned experiments, not autonomous online prediction.
+In the inspected `final` source snapshot, the data loader constructs
+trajectories from CSV emotion labels. Its `realtime` setting selects labels
+from preceding utterances; its `offline` setting selects the whole dialogue,
+including the current utterance. This describes the inspected code, and does
+not establish which settings produced the paper's reported results.
 
-The old architecture and state-dict keys are preserved. To run that original
-protocol explicitly, use `--trajectory-source oracle` together with
-`--mode realtime` or `--mode offline`, for training and evaluation. These
-settings are recorded in new checkpoints and results. The old published head
-files can be loaded directly, but are not included in this source repository.
+In this package, `oracle` is the option name for those label-supplied
+trajectories. Use `--trajectory-source oracle` together with `--mode realtime`
+or `--mode offline` to match that input construction. The default `predicted`
+option instead builds trajectories from the model's preceding predictions.
+The trajectory source and context mode are recorded in new checkpoints and
+results.
 
-**Results obtained with the new default predicted trajectory must not be
-reported as reproducing the original oracle-conditioned scores.** This cleanup
-does not re-establish the paper's MELD results. See
+The original architecture and state-dict keys are preserved for classifier
+head compatibility. The original head files are not bundled in this source
+repository.
+
+These trajectory options use different inputs. When comparing or reproducing
+results, match the trajectory source, context mode and other experiment
+settings. The paper's full MELD evaluation has not been rerun in this cleanup. See
 [protocol and verification notes](docs/protocol.md).
 
 ## Layout
