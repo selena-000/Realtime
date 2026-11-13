@@ -1,5 +1,7 @@
 # Realtime-MERC
 
+[![CPU tests](https://github.com/selena-000/Realtime/actions/workflows/tests.yml/badge.svg)](https://github.com/selena-000/Realtime/actions/workflows/tests.yml)
+
 A small, feature-based implementation of **Real-Time Multimodal Emotion
 Recognition in Conversations with MLLMs**
 ([paper](https://doi.org/10.1007/978-981-92-2480-7_22)).
